@@ -1,4 +1,4 @@
-#Racket Gameserver
+# Racket Gameserver
 made in the spirit of the 2htdp Universe library
 
 ## General outline
@@ -6,11 +6,11 @@ made in the spirit of the 2htdp Universe library
 The main loop of this server is embedded in the server/connection-server.rkt.
 It should be started with a start function and optional on-connection, on-disconnect, on-message and on-tick functions. Also the port and tick-rate can be supplied.
 
-There is a server/lobby-server/lobby-server.rkt that implements a lobby where new instances of a game can be created, keeps track of the state of these games and delegetes all the messages of the connection server to the right game.
+There is a server/lobby-server/lobby-server.rkt that implements a lobby where new instances of a game can be created, keeps track of the state of these games and delegates all the messages of the connection server to the right game.
 
 The server/game-server.rkt bundles the predefined games and passes it to the lobby-server.
 
-In the games directory there is one game supplied, (a variant of Whist.) Unfortunately one with more obtuse spagetti code.
+In the games directory there is one game supplied, (a variant of Whist.) Unfortunately it has some obtuse spaghetti code.
 
 The HTML folder is where the Front end for the games is defined. In scripts and styles are the files for the main lobby server, the javascript files are found below the games folder.
 
@@ -19,15 +19,24 @@ and run the game-server (racket game-server.rkt)
 
 
 ## The connection server
-
-This server will listen on 127.0.0.1:PORT/game for incoming websocket connections. The incomming connection wil have to provide a unique name. Once a unique name is obtained the connection (name) is passed to the on-connection function and this name will be used to handle messages etc.
+```
+#:forall (A)
+(start-connection-server [starter : (-> Worker-Fct (Bundle A))]
+                         #:port [port : Positive-Integer PORT]
+                         #:on-connection [connection : (-> A ID (Bundle A)) (λ ([S : A] N) (make-bundle S))]
+                         #:on-disconnect [disconnect : (-> A ID (Bundle A)) (λ ([S : A] N) (make-bundle S))]
+                         #:on-message [message : (-> A ID Msg (Bundle A))   (λ ([S : A] N M) (make-bundle S))]
+                         #:on-tick [tick : (-> A (Bundle A))                (λ ([S : A]) (make-bundle S))]
+                         #:tick-rate [tick-rate : Positive-Real +inf.0])
+```
+This server will listen on 127.0.0.1:PORT/game for incoming web-socket connections. The incoming connection will have to provide a unique name. Once a unique name is obtained the connection (name) is passed to the on-connection function and this name will be used to handle messages etc.
 
 There is no password login, and more generally any kind of state is lost when the server is stopped.
 
 Messages between the server and the clients are encoded in json objects with a mandatory tag: field.
 Two tag's are caught by the connection server:
 + "keepalive" that will be ignored
-+ "chat" that has an extra message: field wich will be broadcasted to all other clients.
++ "chat" that has an extra message: field which will be broadcasted to all other clients.
 
 Different from the the htdp-universe the start function takes one argument, a function that can be called to produce a worker. This can be used to create for example a computer player. From the perspective of the game this worker can be treated as any other client.
 
@@ -37,7 +46,7 @@ Logging of all messages is done at ConServ logger. Add  -W "debug@ConServ" to se
 
 The lobby-server is started with a list of Gameservers (structure defined in server/util.rkt). Based on these gameservers it will try to find an optimal tickrate that it will supply to the connection server.
 
-Logged in players (handled by the connection server) will appear in the room Lobby and can create new (game) rooms. Based on the list of supplied games. Multiple rooms of the same game can be started. Once the conditions for starting a game are met (enough players in the room, all players have indicated to be "ready") the game is started, and from here it is refered to as a "bout".
+Logged in players (handled by the connection server) will appear in the room Lobby and can create new (game) rooms. Based on the list of supplied games. Multiple rooms of the same game can be started. Once the conditions for starting a game are met (enough players in the room, all players have indicated to be "ready") the game is started, and from here it is referred to as a "bout".
 
 When a bout is finished, all players are returned to the lobby.
 
@@ -66,7 +75,7 @@ A gameserver is made with:
 
 ## Util
 
-For the server side, the server should include server/util.rkt or server/util-untyped.rkt wich provides the above mentionod new-gameserver. It also provides bundle / make-bundle and variants to produce the return values of the gameserver functions and a MSG macro and :msg match expander to easily create and analyze the json messages.
+For the server side, the server should include server/util.rkt or server/util-untyped.rkt wich provides the above mentioned new-gameserver. It also provides bundle / make-bundle and variants to produce the return values of the gameserver functions and a MSG macro and :msg match expander to easily create and analyze the json messages.
 
 ### Bundle
 ```
@@ -117,7 +126,7 @@ matching can be done with
 regular match can be used in the untyped environment.
 
 ## Javascript
-the javascript (client) side is handled with modules. The module for the game shuold provide two functions
+the javascript (client) side is handled with modules. The module for the game should provide two functions
 + register: a function that receives one argument (screen) the div that can be used to draw the game
 + unregister: a function that will be called when exiting the game.
 
