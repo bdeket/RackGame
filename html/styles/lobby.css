@@ -1,0 +1,62 @@
+#lobby {
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+.room {
+  flex-grow: 1;
+  padding: 1px;
+}
+.roomtitle {
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+  background-color: lavender;
+  border-radius: 1rem;
+  padding: .2rem 0 .2rem 0;
+}
+#rsgbar {
+  display: flex;
+}
+.rsgbutton {
+  font-size: 1.5rem;
+  text-align: center;
+  display: inline-block;
+  flex-grow: 1;
+  margin: 1rem;
+  padding: .2rem;
+  border-radius: 1rem;
+  background-color: lightgray;
+}
+.player {
+  display: inline-block;
+  font-size: 1.5rem;
+  padding: .2rem 1rem .2rem 1rem;
+  border-radius: 1rem;
+  background-color: lightgray;
+}
+.ready {
+  background-color: Chartreuse;
+}
+/*game-list-box*/
+#gamelistbox {
+  position: fixed;
+  padding: 1rem;
+  left: 50%;
+  width: 13rem;
+  margin-left: -7.5rem;
+  top: 10%;
+  background-color: aliceblue;
+  text-align: center;
+  border-radius: 1rem;
+  font-size: 2rem;
+}
+.gamebutton {
+  display: block;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 1rem;
+  padding: .2rem;
+  border-radius: 1rem;
+  background-color: Chartreuse;
+  width: 11rem;
+}

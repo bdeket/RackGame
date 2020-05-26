@@ -1,0 +1,45 @@
+#lang racket/base
+
+(require "../../server/util-untyped.rkt")
+
+(provide (all-defined-out)
+         (all-from-out "../../server/util-untyped.rkt"))
+
+(struct card (suit number) #:transparent)
+(define (card->msg C)(MSG [suit (card-suit C)][number (card-number C)]))
+(define (msg->card C)(card (hash-ref C 'suit)(hash-ref C 'number)))
+
+(define player:waiting "waiting")
+(define player:selectCard "selectCard")
+(define player:selectBid "selectBid")
+(define player:selectTrump "selectTrump")
+(define player:selectAce "selectAce")
+(define player:next "next")
+
+(define bid:pas "Pas")
+(define bid:rik "Rik")
+(define bid:rikaf "Rik af")
+(define bid:miserie "Miserie")
+(define bid:abondance "Abondance")
+(define bid:troel "Troel")
+(define bid:openmiserie "Miserie op tafel")
+(define bid:soloslim "Solo Slim")
+(define bid-list (list bid:pas bid:rik bid:miserie bid:abondance bid:openmiserie bid:soloslim))
+
+(define s-key:players "players")
+(define s-key:cards "cards")
+(define s-key:playerState "playerState")
+(define s-key:selectCard "play")
+(define s-key:selectBid "bid")
+(define s-key:selectTrump "selectTrump")
+(define s-key:selectAce "selectAce")
+(define s-key:gameDone "gameDone")
+(define s-key:lastRound "lastRound")
+(define s-key:cardPlayed "cardPlayed")
+(define s-key:gameType "gameType")
+
+(define w-key:selectCard "selectCard")
+(define w-key:selectBid "selectBid")
+(define w-key:selectTrump "selectTrump")
+(define w-key:selectAce "selectAce")
+(define w-key:next "next")

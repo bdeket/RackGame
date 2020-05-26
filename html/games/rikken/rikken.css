@@ -1,0 +1,153 @@
+#gamebord {
+	display: grid;
+	grid-template-columns: 20% 20% 20% 20% 20%;
+	grid-template-rows: 1fr 1fr 1fr fit-content(.5fr) fit-content(.5fr) fit-content(1fr);
+	grid-template-areas:	". . plNord . trump"
+												". . cdNord . ."
+												"plWest cdWest . cdEast plEast"
+												". . cdSouth . ."
+												"pInfo1 pInfo1 cdSouth pInfo2 pInfo2"
+												"hand hand hand hand hand";
+	height: 100%;
+	background-color: forestgreen;
+}
+#plNord{grid-area: plNord; border-width: 1px 1px 0 1px; border-radius: 1rem 1rem 0 0;}
+#cdNord{grid-area: cdNord; border-width: 0 1px 1px 1px; border-radius: 0 0 1rem 1rem;}
+#plEast{grid-area: plEast; border-width: 1px 1px 1px 0; border-radius: 0 1rem 1rem 0;}
+#cdEast{grid-area: cdEast; border-width: 1px 0 1px 1px; border-radius: 1rem 0 0 1rem;}
+#plWest{grid-area: plWest; border-width: 1px 0 1px 1px; border-radius: 1rem 0 0 1rem;}
+#cdWest{grid-area: cdWest; border-width: 1px 1px 1px 0; border-radius: 0 1rem 1rem 0;}
+#cdSouth {grid-area: cdSouth; border-width: 0; border-radius: 0;}
+.playerarea, .cardarea{
+  border-color: black;
+  border-style: solid;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#plLeft{grid-area: pInfo1;
+	align-self: end;
+	justify-self: begin;
+}
+#plRight{
+	grid-area: pInfo2;
+	align-self: end;
+	justify-self: end;
+	display: grid;
+	grid-template-areas: "lcw lcn lce" ". lcs .";
+	width: min-content;
+}
+#handbox {grid-area: hand;}
+#trump {
+  grid-area: trump;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#trump .card{
+  display: inline-block;
+  width: 2rem;
+  height: 1rem;
+}
+#trump span{display: block;}
+#bid {
+  display: flex;
+  flex-direction: column;
+  grid-column: 3/4;
+  grid-row: 2/6;
+  background-color: #0a6a0a;
+  border-radius: 1rem;
+  width: 100%;
+  padding: 1rem 0;
+  align-items: center;
+  align-self: self-end;
+}
+#bid>button {
+  display: block;
+  width: 95%;
+}
+#bid>.card{
+  align-self: center;
+}
+
+.player{
+	background-color: lightgray;
+  width: max-content;
+  height: max-content;
+}
+.player>span {margin: .2rem;}
+.player>.playername {display: block;}
+#plLeft>.playername {display: unset;}
+
+.card {
+	display: inline-grid;
+	grid-auto-flow: column;
+	background-color: lightgray;
+	align-items: center;
+	justify-items: center;
+	margin: .2rem;
+	border-radius: .5rem;
+	padding: .2rem;
+	height: 3rem;
+	width: 6rem;
+}
+#handbox>card:hover {
+	background-color: lavender;
+}
+#plRight > .card {
+	height: 2rem;
+	width: 4rem;
+}
+.ready{background-color: chartreuse;}
+.computer{background-color: gray;}
+
+@media screen and (min-resolution:  96dpi) and (max-width:  800px),
+       screen and (min-resolution: 150dpi) and (max-width: 1250px),
+	   screen and (min-resolution: 200dpi) and (max-width: 1667px),
+	   screen and (min-resolution: 250dpi) and (max-width: 2083px),
+	   screen and (min-resolution: 300dpi) and (max-width: 2500px),
+	   screen and (min-resolution: 350dpi) and (max-width: 2917px){
+	#gamebord{
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: 1fr 1fr 1fr auto auto;
+		grid-template-areas: ".      plNord  trump"
+		                     "plWest cdNord  plEast"
+												 "cdWest cdSouth cdEast"
+												 "pInfo1 cdSouth pInfo2"
+												 "hand   hand    hand"
+	}
+  #plWest{border-width: 1px 1px 0 1px; border-radius: 1rem 1rem 0 0;}
+  #cdWest{border-width: 0 1px 1px 1px; border-radius: 0 0 1rem 1rem;}
+  #plEast{border-width: 1px 1px 0 1px; border-radius: 1rem 1rem 0 0;}
+  #cdEast{border-width: 0 1px 1px 1px; border-radius: 0 0 1rem 1rem;}
+  #bid{
+    grid-column: 2/3;
+    grid-row: 2/5
+  }
+}
+@media screen and (min-resolution:  96dpi) and (max-width:  500px),
+       screen and (min-resolution: 150dpi) and (max-width:  781px),
+	   screen and (min-resolution: 200dpi) and (max-width: 1042px),
+	   screen and (min-resolution: 250dpi) and (max-width: 1302px),
+	   screen and (min-resolution: 300dpi) and (max-width: 1562px),
+	   screen and (min-resolution: 350dpi) and (max-width: 1823px){
+	.card{
+ 		height: 2rem;
+ 		width: 4rem;
+ 	}
+ 	#plRight > .card {
+ 		height: 1rem;
+ 		width: 2rem;
+		margin: 0;
+ 	}
+}
+@media screen and (min-resolution:  96dpi) and (max-width:  350px),
+       screen and (min-resolution: 150dpi) and (max-width:  547px),
+	   screen and (min-resolution: 200dpi) and (max-width:  729px),
+	   screen and (min-resolution: 250dpi) and (max-width:  911px),
+	   screen and (min-resolution: 300dpi) and (max-width: 1094px),
+	   screen and (min-resolution: 350dpi) and (max-width: 1276px){
+	/**/
+}
