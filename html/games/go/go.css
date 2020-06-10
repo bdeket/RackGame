@@ -1,0 +1,74 @@
+#gamebord {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-areas:	"play1 bord play2";
+  height: 100%;
+  background-color: forestgreen;
+}
+#player1 {grid-area: play1;}
+#player2 {grid-area: play2;}
+.playerTop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+#bordbox {
+  grid-area: bord;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-size: 40px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  overflow: auto;
+}
+.row {
+  display: flex;
+  height: 1em;
+}
+.space{
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+}
+.space:hover{
+  background-color: darkgreen;
+}
+.player {
+}
+.player>div>svg {
+  width: 1rem;
+}
+.ready{
+  background-color: chartreuse;
+}
+#passbtn {
+  width: min-content;
+}
+@media screen and (min-resolution:  96dpi) and (max-width:  800px),
+       screen and (min-resolution: 150dpi) and (max-width: 1250px),
+       screen and (min-resolution: 200dpi) and (max-width: 1667px),
+       screen and (min-resolution: 250dpi) and (max-width: 2083px),
+       screen and (min-resolution: 300dpi) and (max-width: 2500px),
+       screen and (min-resolution: 350dpi) and (max-width: 2917px){
+  /**/
+}
+@media screen and (min-resolution:  96dpi) and (max-width:  500px),
+       screen and (min-resolution: 150dpi) and (max-width:  781px),
+       screen and (min-resolution: 200dpi) and (max-width: 1042px),
+       screen and (min-resolution: 250dpi) and (max-width: 1302px),
+       screen and (min-resolution: 300dpi) and (max-width: 1562px),
+       screen and (min-resolution: 350dpi) and (max-width: 1823px){
+  /**/
+}
+@media screen and (min-resolution:  96dpi) and (max-width:  350px),
+       screen and (min-resolution: 150dpi) and (max-width:  547px),
+       screen and (min-resolution: 200dpi) and (max-width:  729px),
+       screen and (min-resolution: 250dpi) and (max-width:  911px),
+       screen and (min-resolution: 300dpi) and (max-width: 1094px),
+       screen and (min-resolution: 350dpi) and (max-width: 1276px){
+  /**/
+}
