@@ -2,7 +2,7 @@
 
 (require racket/match
          racket/format)
-(require "../connection-server.rkt")
+(require "../server/connection-server.rkt")
 (require "datastructs.rkt"
          "mail.rkt")
 

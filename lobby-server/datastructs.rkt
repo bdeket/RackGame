@@ -1,9 +1,9 @@
 #lang typed/racket/base
 
-(require "../util.rkt")
+(require "../server/util.rkt")
 
 (provide (all-defined-out)
-         (all-from-out "../util.rkt"))
+         (all-from-out "../server/util.rkt"))
 
 (define-logger LobServ)
 

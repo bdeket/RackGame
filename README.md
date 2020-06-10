@@ -6,9 +6,9 @@ made in the spirit of the 2htdp Universe library
 The main loop of this server is embedded in the server/connection-server.rkt.
 It should be started with a start function and optional on-connection, on-disconnect, on-message and on-tick functions. Also the port and tick-rate can be supplied.
 
-There is a server/lobby-server/lobby-server.rkt that implements a lobby where new instances of a game can be created, keeps track of the state of these games and delegates all the messages of the connection server to the right game.
+There is a lobby-server/lobby-server.rkt that implements a lobby where new instances of a game can be created, keeps track of the state of these games and delegates all the messages of the connection server to the right game.
 
-The server/game-server.rkt bundles the predefined games and passes it to the lobby-server.
+The games/game-server.rkt bundles the predefined games and passes it to the lobby-server.
 
 In the games directory there is one game supplied, (a variant of Whist.) Unfortunately it has some obtuse spaghetti code.
 
